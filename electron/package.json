@@ -1,0 +1,31 @@
+{
+  "name": "electron-quick-start",
+  "version": "0.0.3",
+  "description": "A minimal Electron application",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo 'nothing to do'",
+    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --prune=true --out=release-builds",
+    "package-win32": "electron-packager . --overwrite --asar=true --platform=win32 --arch=ia32 --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Electron Tutorial App\"",
+    "package-win64": "electron-packager . --overwrite --asar=true --platform=win32 --arch=x64 --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Electron Tutorial App\"",
+    "package-nix32": "electron-packager . --overwrite --platform=linux --arch=ia32 --prune=true --out=release-builds",
+    "package-nix64": "electron-packager . --overwrite --platform=linux --arch=x64 --prune=true --out=release-builds",
+    "package-nix-armv7l": "electron-packager . --overwrite --platform=linux --arch=armv7l --prune=true --out=release-builds",
+    "package-nix-arm64": "electron-packager . --overwrite --platform=linux --arch=arm64 --prune=true --out=release-builds"
+  },
+  "repository": "https://github.com/electron/electron-quick-start",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "GitHub",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "~1.7.6",
+    "electron-packager": "^9.0.1"
+  }
+}
