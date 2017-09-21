@@ -6,6 +6,8 @@ import {
   FullLayout,
   SimpleLayout
 } from './containers';
+import { AuthGuard } from 'app/services/auth_guard.service';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 export const routes: Routes = [
   {
@@ -16,6 +18,7 @@ export const routes: Routes = [
   {
     path: '',
     component: FullLayout,
+    canActivate:[AuthGuard],
     data: {
       title: 'Home'
     },
@@ -59,6 +62,12 @@ export const routes: Routes = [
 
 @NgModule({
   imports: [ RouterModule.forRoot(routes) ],
-  exports: [ RouterModule ]
+  exports: [ RouterModule ],
+  providers: [
+    AuthGuard,
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy
+    }],
 })
 export class AppRoutingModule {}

@@ -1,8 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+
+import { HttpModule }       from '@angular/http';
 
 import { AppComponent } from './app.component';
+
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+
+import { AuthGuard } from './services/auth_guard.service';
 
 // Import containers
 import {
@@ -52,6 +57,15 @@ import { AppRoutingModule } from './app.routing';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
+import { UserInfoService } from 'app/services/user-info.service';
+import { TranslateService } from 'app/services/api/translate.service';
+import { ApiRequestService } from 'app/services/api/api-request.service';
+import { LoginService } from 'app/services/api/login.service';
+import { OrderService } from 'app/services/api/order.service';
+import { ProductService } from 'app/services/api/product.service';
+import { CustomerService } from 'app/services/api/customer.service';
+import { EmployeeService } from 'app/services/api/employee.service';
+import { AppConfig } from 'app/app-config';
 
 @NgModule({
   imports: [
@@ -59,7 +73,10 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
     AppRoutingModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
-    ChartsModule
+    ChartsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpModule
   ],
   declarations: [
     AppComponent,
@@ -67,10 +84,19 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
     ...APP_COMPONENTS,
     ...APP_DIRECTIVES
   ],
-  providers: [{
-    provide: LocationStrategy,
-    useClass: HashLocationStrategy
-  }],
-  bootstrap: [ AppComponent ]
+  
+    providers:[
+      AuthGuard,
+      UserInfoService,
+      TranslateService,
+      ApiRequestService,
+      LoginService,
+      OrderService,
+      ProductService,
+      CustomerService,
+      EmployeeService,
+      AppConfig,
+    ],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
